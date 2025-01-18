@@ -44,6 +44,7 @@ function PropertyCard({ id, area, address, city, type, liked, allimages }) {
     speed: 500,
     slidesToShow: 1,
     slidesToScroll: 1,
+    arrows: false,
   };
 
   return (
