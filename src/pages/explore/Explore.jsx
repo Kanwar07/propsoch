@@ -1,9 +1,13 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import explorestyle from "../../css/explore.module.css";
 import { ContextData } from "../../context/Context";
 import PropertyCard from "../../components/PropertyCard";
 
 function Explore() {
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   const { propertyDetails } = useContext(ContextData);
 
   return (
@@ -42,7 +46,15 @@ function Explore() {
           })}
         </div>
       ) : (
-        <div></div>
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "center",
+            margin: "2rem 0rem 6rem 0rem",
+          }}
+        >
+          Properties loading...
+        </div>
       )}
     </div>
   );

@@ -5,17 +5,7 @@ import wishlisted from "../assets/property/wishlisted.svg";
 import { ContextData } from "../context/Context";
 import { Link } from "react-router-dom";
 
-function PropertyCard({
-  id,
-  area,
-  address,
-  city,
-  image,
-  type,
-  price,
-  liked,
-  construction,
-}) {
+function PropertyCard({ id, area, address, city, image, type, liked }) {
   const imagePath = require(`/src/assets/property/${image}`);
   const { propertyDetails, wishlistProperties, setwishlistProperties } =
     useContext(ContextData);
@@ -32,6 +22,10 @@ function PropertyCard({
       (property) => property.id === id
     );
     setwishlistProperties([...wishlistProperties, updatedwishlist]);
+    localStorage.setItem(
+      "wishlist",
+      JSON.stringify([...wishlistProperties, updatedwishlist])
+    );
   };
 
   const handleremovewishlist = (id) => {
@@ -39,6 +33,7 @@ function PropertyCard({
       (property) => property.id !== id
     );
     setwishlistProperties(updatedwishlist);
+    localStorage.setItem("wishlist", JSON.stringify(updatedwishlist));
   };
 
   return (
@@ -47,14 +42,7 @@ function PropertyCard({
         <Link
           to="/detail"
           state={{
-            area,
-            address,
-            city,
-            image,
-            type,
-            price,
-            liked,
-            construction,
+            id,
           }}
         >
           <img

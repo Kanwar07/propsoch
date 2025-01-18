@@ -6,17 +6,29 @@ export const ContextData = createContext();
 function Context({ children }) {
   const [propertyDetails, setpropertyDetails] = useState();
   const [wishlistProperties, setwishlistProperties] = useState([]);
-  const [Latitude, setLatitude] = useState();
-  const [Longitude, setLongitude] = useState();
+  const [propertyDetail, setpropertyDetail] = useState([]);
 
   useEffect(() => {
-    const getLocation = () => {
-      navigator.geolocation.getCurrentPosition((position) => {
-        setLatitude(position.coords.latitude.toFixed(14));
-        setLongitude(position.coords.longitude.toFixed(14));
-      });
-    };
-    getLocation();
+    if (typeof window !== "undefined") {
+      const wishlistpropertiesdata = localStorage.getItem("wishlist");
+      const detailpropertydata = localStorage.getItem("detailproperty");
+
+      if (wishlistpropertiesdata || detailpropertydata) {
+        try {
+          const parsedwishlistproperties = JSON.parse(wishlistpropertiesdata);
+          setwishlistProperties(parsedwishlistproperties);
+
+          const parseddetailproperty = JSON.parse(detailpropertydata);
+          setpropertyDetail(parseddetailproperty);
+        } catch (error) {
+          console.error("Error parsing data from storage:", error);
+        }
+      } else {
+        console.error(
+          "No Puja Data or Token found in localStorage or Cookies."
+        );
+      }
+    }
   }, []);
 
   useEffect(() => {
@@ -32,8 +44,8 @@ function Context({ children }) {
         propertyDetails,
         wishlistProperties,
         setwishlistProperties,
-        Latitude,
-        Longitude,
+        propertyDetail,
+        setpropertyDetail,
       }}
     >
       {children}
