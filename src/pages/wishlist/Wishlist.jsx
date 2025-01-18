@@ -25,6 +25,7 @@ function Wishlist() {
               liked,
               price,
               construction,
+              allimages,
             } = property;
             return (
               <div key={id}>
@@ -39,6 +40,7 @@ function Wishlist() {
                     liked,
                     price,
                     construction,
+                    allimages,
                   }}
                 />
               </div>

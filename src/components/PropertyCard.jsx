@@ -4,9 +4,11 @@ import wishlist from "../assets/property/wishlist.svg";
 import wishlisted from "../assets/property/wishlisted.svg";
 import { ContextData } from "../context/Context";
 import { Link } from "react-router-dom";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
+import Slider from "react-slick";
 
-function PropertyCard({ id, area, address, city, image, type, liked }) {
-  const imagePath = require(`/src/assets/property/${image}`);
+function PropertyCard({ id, area, address, city, type, liked, allimages }) {
   const { propertyDetails, wishlistProperties, setwishlistProperties } =
     useContext(ContextData);
 
@@ -36,6 +38,14 @@ function PropertyCard({ id, area, address, city, image, type, liked }) {
     localStorage.setItem("wishlist", JSON.stringify(updatedwishlist));
   };
 
+  var settings = {
+    dots: true,
+    infinite: true,
+    speed: 500,
+    slidesToShow: 1,
+    slidesToScroll: 1,
+  };
+
   return (
     <div className={propertystyle.propertycardmaindiv}>
       <div style={{ position: "relative" }}>
@@ -45,11 +55,21 @@ function PropertyCard({ id, area, address, city, image, type, liked }) {
             id,
           }}
         >
-          <img
-            alt={type}
-            src={imagePath}
-            className={propertystyle.propertyimage}
-          />
+          <Slider {...settings} style={{ borderRadius: "15px" }}>
+            {allimages.map((image) => {
+              const { id, url } = image;
+              const imagePath = require(`/src/assets/property/${url}`);
+              return (
+                <div key={id}>
+                  <img
+                    alt={type}
+                    src={imagePath}
+                    className={propertystyle.propertyimage}
+                  />
+                </div>
+              );
+            })}
+          </Slider>
         </Link>
         {likedproperty ? (
           <img

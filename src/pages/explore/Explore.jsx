@@ -25,6 +25,7 @@ function Explore() {
               liked,
               price,
               construction,
+              allimages,
             } = property;
             return (
               <div key={id}>
@@ -39,6 +40,7 @@ function Explore() {
                     liked,
                     price,
                     construction,
+                    allimages,
                   }}
                 />
               </div>
