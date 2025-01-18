@@ -42,7 +42,9 @@ function Wishlist() {
           })}
         </div>
       ) : (
-        <div></div>
+        <div style={{ display: "flex", justifyContent: "center" }}>
+          Save now, Buy later
+        </div>
       )}
     </div>
   );

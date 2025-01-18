@@ -9,17 +9,24 @@ import { Link } from "react-router-dom";
 function Footer() {
   return (
     <div className={footerstyle.footermaindiv}>
-      <Link to="/">
+      <Link to="/" style={{ textDecoration: "none" }}>
         <div className={footerstyle.footeritemsdiv}>
           <img
             src={explore}
             alt="explore"
             style={{ width: "25px", height: "25px" }}
-          />{" "}
-          <span style={{ color: "#757575", fontSize: "14px" }}>Explore</span>
+          />
+          <span
+            style={{
+              color: "#757575",
+              fontSize: "14px",
+            }}
+          >
+            Explore
+          </span>
         </div>
       </Link>
-      <Link to="/wishlist">
+      <Link to="/wishlist" style={{ textDecoration: "none" }}>
         <div className={footerstyle.footeritemsdiv}>
           <img
             src={wishlist}

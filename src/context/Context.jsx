@@ -6,6 +6,18 @@ export const ContextData = createContext();
 function Context({ children }) {
   const [propertyDetails, setpropertyDetails] = useState();
   const [wishlistProperties, setwishlistProperties] = useState([]);
+  const [Latitude, setLatitude] = useState();
+  const [Longitude, setLongitude] = useState();
+
+  useEffect(() => {
+    const getLocation = () => {
+      navigator.geolocation.getCurrentPosition((position) => {
+        setLatitude(position.coords.latitude.toFixed(14));
+        setLongitude(position.coords.longitude.toFixed(14));
+      });
+    };
+    getLocation();
+  }, []);
 
   useEffect(() => {
     const fetchdata = () => {
@@ -16,7 +28,13 @@ function Context({ children }) {
 
   return (
     <ContextData.Provider
-      value={{ propertyDetails, wishlistProperties, setwishlistProperties }}
+      value={{
+        propertyDetails,
+        wishlistProperties,
+        setwishlistProperties,
+        Latitude,
+        Longitude,
+      }}
     >
       {children}
     </ContextData.Provider>
