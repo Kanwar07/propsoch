@@ -9,7 +9,7 @@ import { NavLink } from "react-router-dom";
 function Footer() {
   return (
     <div className={footerstyle.footermaindiv}>
-      <NavLink to="/" style={{ textDecoration: "none" }}>
+      <NavLink to="/" style={{ textDecoration: "none", outline: "none" }}>
         {({ isActive }) => (
           <div className={footerstyle.footeritemsdiv}>
             <img
@@ -29,7 +29,10 @@ function Footer() {
         )}
       </NavLink>
 
-      <NavLink to="/wishlist" style={{ textDecoration: "none" }}>
+      <NavLink
+        to="/wishlist"
+        style={{ textDecoration: "none", outline: "none" }}
+      >
         {({ isActive }) => (
           <div className={footerstyle.footeritemsdiv}>
             <img
@@ -49,7 +52,7 @@ function Footer() {
         )}
       </NavLink>
 
-      <NavLink to="/map" style={{ textDecoration: "none" }}>
+      <NavLink to="/map" style={{ textDecoration: "none", outline: "none" }}>
         {({ isActive }) => (
           <div className={footerstyle.footeritemsdiv}>
             <img
@@ -69,7 +72,7 @@ function Footer() {
         )}
       </NavLink>
 
-      <NavLink to="/login" style={{ textDecoration: "none" }}>
+      <NavLink to="/login" style={{ textDecoration: "none", outline: "none" }}>
         {({ isActive }) => (
           <div className={footerstyle.footeritemsdiv}>
             <img
