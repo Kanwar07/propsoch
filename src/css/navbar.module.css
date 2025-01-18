@@ -1,0 +1,16 @@
+.maindiv {
+  position: sticky;
+  top: 0;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 1rem 0rem;
+  background-color: #ffffff;
+  z-index: 100;
+}
+
+.mainimage {
+  height: 50px;
+  width: 200px;
+}
