@@ -14,14 +14,24 @@ function Detail() {
   const location = useLocation();
   const { id } = location.state;
 
+  console.log(id);
+
   const { propertyDetails, propertyDetail, setpropertyDetail } =
     useContext(ContextData);
 
   useEffect(() => {
     const fetchproperties = () => {
       const savedProperty = JSON.parse(localStorage.getItem("detailproperty"));
-
-      if (savedProperty.id !== id) {
+      if (!savedProperty) {
+        const requiredProperty = propertyDetails.find(
+          (property) => property.id === id
+        );
+        setpropertyDetail(requiredProperty);
+        localStorage.setItem(
+          "detailproperty",
+          JSON.stringify(requiredProperty)
+        );
+      } else {
         const requiredProperty = propertyDetails.find(
           (property) => property.id === id
         );
