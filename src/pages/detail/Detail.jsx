@@ -14,8 +14,6 @@ function Detail() {
   const location = useLocation();
   const { id } = location.state;
 
-  console.log(id);
-
   const { propertyDetails, propertyDetail, setpropertyDetail } =
     useContext(ContextData);
 
